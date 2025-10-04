@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Seeya & Bhoovi's Mega Program</title>
+        <script>
+            function prime()
+            {
+            let f=0,j,i,b,c=0,a;
+            a=Number(document.getElementById("N").value);
+            b=Number(document.getElementById("P").value);
+            document.getElementById("res").textContent="Prime numbers between "+a+" and "+b+" : ";
+            for(i=a;i<=b;i++)
+            {c=0;
+            for(j=1;j<=i;j++)
+            {
+                if(i%j==0)
+                c++;
+               // document.getElementById("res").textContent+=(i+"  ");
+            }
+    
+            if(c==2)
+	    {
+                document.getElementById("res").textContent+=(i+" ");
+                f=1;
+	    }
+            }
+            if(f==0)
+            {
+                document.getElementById("res").textContent=("No prime numbers between "+a+" and "+b);
+            }
+        }
+        </script>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <center>
+        <h1>Check if the number is prime or not</h1>
+		<br>
+		<p>Enter number:</p>
+        <input type="number" id="N">
+        <br><br>
+         <input type="number" id="P">
+        <br>
+        <br>
+        <button onclick="prime()">Go</button>
+        <br>
+        <br>
+        <p id="res"></p>
+
+    </center>
+        </body>
+</html>
