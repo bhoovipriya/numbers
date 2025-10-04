@@ -30,7 +30,133 @@
         }
         </script>
         <style>
+			/* ============ DOODLE THEME ============ */
+:root {
+  --paper: #fffaf0;
+  --ink: #1b1b1b;
+  --accent: #e04e4e;
+}
 
+/* Handwritten font & paper-like background */
+body {
+  font-family: 'Patrick Hand', cursive;
+  background:
+    linear-gradient(transparent 97%, rgba(0,0,0,0.02) 100%) 0 0/100% 6px,
+    radial-gradient(circle at 10% 10%, rgba(0,0,0,0.015), transparent 10%),
+    var(--paper);
+  margin: 0;
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* Subtle repeating scribble background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'>\
+  <g fill='none' stroke='%231b1b1b' stroke-opacity='0.08' stroke-width='1.8' stroke-linecap='round'>\
+  <path d='M10 40 C 40 10, 70 70, 100 40 S 160 80, 190 50'/>\
+  <path d='M0 140 C 50 90, 80 170, 140 130 S 220 140, 260 120'/>\
+  </g></svg>");
+  background-repeat: repeat;
+  background-size: 220px;
+  opacity: 0.25;
+  pointer-events: none;
+  transform: rotate(-5deg);
+}
+
+/* Center box */
+main {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.9);
+  padding: clamp(1rem, 5vw, 2.5rem);
+  border-radius: 16px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  border: 2px dashed rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Heading with doodle underline */
+h1 {
+  font-size: clamp(1.3rem, 5vw, 2rem);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+h1::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 6px;
+  background-image: url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 6'>\
+  <path d='M0 3 Q 30 0 60 3 T 120 3 T 180 3 T 200 3' fill='none' stroke='%23e04e4e' stroke-width='4' stroke-linecap='round'/>\
+  </svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  opacity: 0.85;
+}
+
+/* Inputs and button */
+input[type="number"] {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  border: 2px dashed rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.7);
+  outline: none;
+  margin: 0.3rem 0;
+  width: 80%;
+  box-sizing: border-box;
+}
+input[type="number"]:focus {
+  border-color: var(--accent);
+}
+
+/* Doodle button */
+button {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1rem;
+  background: transparent;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  box-shadow: 4px 5px 0 rgba(0,0,0,0.08);
+}
+button:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.3);
+}
+button:active {
+  transform: scale(0.97);
+}
+
+/* Result text */
+#res {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  color: var(--accent);
+  word-wrap: break-word;
+}
+
+/* Responsive tweaks */
+@media (max-width:500px) {
+  main { padding: 1.2rem; }
+  input[type="number"] { width: 100%; }
+}
         </style>
     </head>
     <body>
@@ -51,3 +177,4 @@
     </center>
         </body>
 </html>
+
